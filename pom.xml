@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.en.iot</groupId>
+    <artifactId>myspringcloud</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>myspringcloud-api</module>
+        <module>myspringcloud-provider-product</module>
+        <module>myspringcloud-provider-product-hystrix</module>
+        <module>myspringcloud-consumer</module>
+        <module>myspringcloud-consumer-feign</module>
+        <module>myspringcloud-security</module>
+        <module>myspringcloud-eureka</module>
+        <module>myspringcloud-eureka2</module>
+        <module>myspringcloud-eureka3</module>
+        <module>myspringcloud-provider-product2</module>
+        <module>myspringcloud-provider-product3</module>
+        <module>myspringcloud-service</module>
+        <module>myspringcloud-consumer-hystrix-dashboard</module>
+        <module>myspringcloud-provider-user-hystrix</module>
+        <module>myspringcloud-consumer-turbine</module>
+        <module>myspringcloud-zuul-gateway</module>
+    </modules>
+
+    <properties>
+        <jdk.version>1.8</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+            <!-- <version>2.1.2.RELEASE</version> -->
+            <!-- 因为Zuul目前对springboot2.1.2支持不好，所以对父工程springboot版本进行降级 -->
+                <version>2.0.7.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.31</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>1.3.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.en.iot</groupId>
+                <artifactId>myspringcloud-api</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.en.iot</groupId>
+                <artifactId>myspringcloud-security</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <finalName>myspringcloud</finalName>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>$</delimiter>
+                    </delimiters>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
